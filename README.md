@@ -1,11 +1,16 @@
 Angular Realtime Examples
 =========================
 
+[Click here to view the slides:](http://slides.com/zulfajuniadizulkifli/r/fullscreen)
+
+[<img src="http://i.imgur.com/rr4fL6o.png" width="240px"/>](http://slides.com/zulfajuniadizulkifli/r/fullscreen)
+
 AngularJS and NodeJS realtime technologies compared. Covers short-polling, long-polling, server-sent events and websocket.
 
 ## Requirements
 
-[NodeJS](https://nodejs.org/download/)
+1. Download and install [NodeJS](https://nodejs.org/download/)
+2. Download and extract this [repository](https://github.com/zulfajuniadi/angular-realtime-examples/archive/master.zip)
 
 *As the target audience of this repo is assumed to have little knowledge in NodeJS, bower & NPM, all dependencies are committed together.*
     
