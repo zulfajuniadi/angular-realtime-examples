@@ -1,0 +1,33 @@
+{
+  "name": "ng-sockjs",
+  "version": "0.0.1",
+  "authors": [
+    "Zulfa Juniadi bin Zulkifli <zulfajuniadi@gmail.com>"
+  ],
+  "description": "AngularJS module for SockJS. Enables auto-reconnect features, auto serialization to JSON, and other improvements to SockJS native client",
+  "main": "dist/ng-sockjs.min.js",
+  "keywords": [
+    "angularjs",
+    "angular",
+    "sockjs",
+    "realtime",
+    "short",
+    "poll",
+    "long",
+    "poll",
+    "websocket",
+    "eventsource"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15",
+    "sockjs": "~0.3.4"
+  }
+}

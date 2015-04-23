@@ -1,0 +1,22 @@
+{
+  "name": "angular-realtime-example",
+  "version": "0.0.0",
+  "description": "",
+  "main": "ex1.js",
+  "dependencies": {
+    "body-parser": "^1.12.3",
+    "express": "^4.12.3",
+    "express-sse": "git://github.com/dpskvn/express-sse.git",
+    "sockjs": "^0.3.15"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-jshint": "^1.10.0",
+    "jshint-stylish": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}

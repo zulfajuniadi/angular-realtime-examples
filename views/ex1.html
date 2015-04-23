@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <br>
+    <div class="container">
+
+        <form ng-controller="FormController" ng-submit="create()">
+            {{username}} : 
+            <input type="text" ng-model="message" autofocus>
+            <button class="btn btn-primary">Send</button>
+        </form>
+
+        <br>
+
+        <ul class="list-unstyled" ng-controller="ListController">
+            <li ng-repeat="message in messages | reverse">
+                <span>{{message.username}} : </span>
+                <span>{{message.message}}</span>
+                <div class="text-muted">{{message.timestamp | amTimeAgo}}</div>
+            </li>
+        </ul>
+
+    </div>
+
+    <script src="/assets/angular/angular.min.js"></script>
+    <script src="/assets/moment/min/moment.min.js"></script>
+    <script src="/assets/angular-moment/angular-moment.min.js"></script>
+    <script src="/assets/chance/chance.js"></script>
+    <script>
+        var app = angular.module('app', ['angularMoment']);
+
+        // our poll interval set to 1 seconds
+        var pollInterval = 1000;
+
+        // to display the latest messages first, we'll have to reverse it
+        app.filter('reverse', function() {
+            return function(items) {
+                return items.slice().reverse();
+            };
+        });
+
+        // ListController to control our list
+        app.controller('ListController', function($scope, $timeout, $http) {
+            $scope.messages = [];
+            var last = 0;
+            var getMessages = function(callback){
+
+                // get all messages after the last
+                $http.get('/messages?last=' + last)
+                    .success(function(response){
+
+                        // append the new messages to the scope
+                        $scope.messages = $scope.messages.concat(response);
+
+                        // update the last value
+                        last = $scope.messages.length;
+                    })
+
+                    // whether success or fail, run callback
+                    .finally(callback);
+            };
+
+            // poll every pollInterval ms
+            var poll = function(){
+                getMessages(function(){
+
+                    // set poll as the callback
+                    $timeout(poll, pollInterval);
+                });
+            };
+            poll();
+        });
+
+        // FormController to control our form
+        app.controller('FormController', function($scope, $http, $window) {
+            $scope.message = '';
+
+            // get username from localStorage or else generate one for me
+            $scope.username = $window.localStorage.getItem('username') || chance.first();
+
+            // save the username into localStorage
+            $window.localStorage.setItem('username', $scope.username);
+
+            // create new message
+            $scope.create = function() {
+                var message = $scope.message.trim();
+
+                // if message is truthy
+                if(message) {
+
+                    // post data to backend
+                    $http.post('/message', {
+                        message: message,
+                        username: $scope.username
+                    });
+
+                    // set message to blank
+                    $scope.message = '';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
