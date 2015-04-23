@@ -12,10 +12,11 @@ AngularJS and NodeJS realtime technologies compared. Covers short-polling, long-
 ## Usage
 
 This repo contains four examples:
-1. ex1.js - Realtime example via short-polling
-2. ex2.js - Realtime example via long-polling
-3. ex3.js - Realtime example via EventSource
-4. ex4.js - Realtime example via websockets (SockJS)
+
+1.  ex1.js - Realtime example via short-polling
+2.  ex2.js - Realtime example via long-polling
+3.  ex3.js - Realtime example via EventSource
+4.  ex4.js - Realtime example via websockets (SockJS)
 
 To view each examples in action, just run `node ex1.js` to start the local server [http://localhost:3000/](http://localhost:3000/).
 
